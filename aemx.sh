@@ -22,7 +22,7 @@ aemroot() {
 # `ui.apps/.../jcr_root/apps/` folder.
 #
 # - `aemx content dam` will push the `dam` folder from inside the
-# `ui.content/.../jcr_root/content` folder
+# `ui.content/.../jcr_root/content/` folder
 #
 # - `aemx config blog` will push the `blog` folder from inside the
 # `ui.content/.../jcr_root/conf/` folder
@@ -35,9 +35,20 @@ aemroot() {
 aemx() {
     while getopts ":h" option; do
         case $option in
-            h) # display Help
-                Help
-                ;;
+            h) # Display Help
+               echo "Pushes folders to a local AEM instance"
+               echo
+               echo "Syntax: aemx [apps|content|config] <path-to-folder>"
+               echo
+               echo "The path to folder must be written without the precedent"
+               echo "forward slash."
+               echo "For more indications on how to use this utility, read the"
+               echo "comments in the script."
+               echo
+               echo "options:"
+               echo "-h     Print this Help."
+               echo
+               ;;
         esac
     done
     case $1 in
@@ -60,19 +71,3 @@ aemx() {
 # If you have multiple projects in the same folder, this will sync changes on all of
 # them.
 alias aemsync="npx aemsync"
-
-Help() {
-   # Display Help
-   echo "Pushes folders to a local AEM instance"
-   echo
-   echo "Syntax: aemx [apps|content|config] <path-to-folder>"
-   echo
-   echo "The folder must be written without the precedent foward slash"
-   echo "For more indications on how to use this utility, read the"
-   echo "comments in the script."
-   echo
-   echo "options:"
-   echo "h     Print this Help."
-   echo
-}
-
